@@ -6,3 +6,21 @@
 .spec-selected {
   background-color: #00A000;
 }
+
+.worker-checkbox {
+  padding: 0px;
+}
+.tier-title{
+  font-size: x-small;
+  padding-left: 10px;
+}
+
+.tier1 {
+  background-color: #ccffcc;
+}
+.tier2 {
+  background-color: #ccccff;
+}
+.tier3 {
+  background-color: #ffcccc;
+}

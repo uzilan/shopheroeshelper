@@ -1,0 +1,16 @@
+#workerTemplate h5 {
+  margin: 0px;
+}
+
+#workerTemplate i {
+  font-size: xx-small;
+}
+
+#workerTemplate ul
+{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+

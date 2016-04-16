@@ -94,6 +94,36 @@ angular.module('shopheroesApp')
         name: 'Sorceress',
         tier: 2,
         specializations: [spec.alchemy, spec.magic]
+      },
+      {
+        name: 'Alchemist',
+        tier: 3,
+        specializations: [spec.alchemy, spec.magic, spec.tinkering]
+      },
+      {
+        name: 'Artisan',
+        tier: 3,
+        specializations: [spec.arts, spec.textile, spec.jewelry]
+      },
+      {
+        name: 'Master',
+        tier: 3,
+        specializations: [spec.armor, spec.metal, spec.weapon]
+      },
+      {
+        name: 'Seamstress',
+        tier: 3,
+        specializations: [spec.armor, spec.arts, spec.textile]
+      },
+      {
+        name: 'Sculptor',
+        tier: 3,
+        specializations: [spec.jewelry, spec.arts, spec.wood]
+      },
+      {
+        name: 'Wizard',
+        tier: 3,
+        specializations: [spec.alchemy, spec.magic, spec.rune]
       }
     ];
 
