@@ -8,14 +8,12 @@
  * Controller of the shopheroesApp
  */
 angular.module('shopheroesApp')
-  .controller('WorkerCtrl', ['$scope', 'workerConstants', 'workerStructure', 'workerService', function ($scope, workerConstants, workerStructure, workerService) {
+  .controller('WorkerCtrl', ['$scope', 'workerStructure', function ($scope, workerStructure) {
 
-    $scope.workerConstants = workerConstants;
     $scope.workerStructure = workerStructure;
     $scope.tier1Workers = _.filter(workerStructure.workers, {'tier': 1});
     $scope.tier2Workers = _.filter(workerStructure.workers, {'tier': 2});
     $scope.tier3Workers = _.filter(workerStructure.workers, {'tier': 3});
-    $scope.numberOfWorkers = 3;
     $scope.workersTier1 = new Array(6);
     $scope.workersTier2 = new Array(6);
     $scope.workersTier3 = new Array(6);

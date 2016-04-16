@@ -1,17 +1,5 @@
 <div class="row">
   <div class="col-md-12">
-    <label for="numberOfWorkers">Number of workers:</label>
-    <div id="numberOfWorkers" class="radio-inline">
-      <label ng-repeat="n in [].constructor(workerConstants.maxNumberOfWorkers) track by $index">
-        <input type="radio" name="numberOfWorkers" ng-model="$parent.numberOfWorkers" ng-value="$index + 1"/>
-        {{$index + 1}}
-      </label>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-12">
     <h3>Workers</h3>
   </div>
 </div>
@@ -64,15 +52,17 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-md-12">
+    <h3>Specializations</h3>
+  </div>
+</div>
 
 <div class="row">
-  <div class="col-md-6">
-    <h3>Specializations</h3>
-    <div ng-repeat="spec in workerStructure.specializations track by $index">
-      <div ng-class="{'spec-selected': isSpecSelected(spec)}">
-        {{spec.name}}
-      </div>
-    </div>
+  <div class="col-md-12">
+    <span ng-repeat="spec in workerStructure.specializations track by $index">
+      <x-spec></x-spec>
+    </span>
   </div>
 </div>
 

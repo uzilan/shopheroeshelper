@@ -1,0 +1,19 @@
+#specListItem {
+  margin: 5px;
+  padding:2px;
+  display: inline-block;
+  font-size: medium;
+  font-weight: 500;
+  border: 1px solid white;
+  text-align: center;
+  width: 140px;
+}
+
+#specListItem.spec-selected {
+  border: 1px dashed #0000FF;
+  background-color: plum;
+}
+
+#specListItem img {
+  text-align: center;
+}

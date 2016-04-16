@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc directive
- * @name shopheroesApp.directive:worker
+ * @name shopheroesApp.directive:spec
  * @description
- * # worker
+ * # spec
  */
 angular.module('shopheroesApp')
-  .directive('worker', function () {
+  .directive('spec', function () {
     return {
       restrict: 'E',
-      templateUrl: 'views/workerTemplate.html'
+      templateUrl: 'views/specTemplate.html'
     };
   });

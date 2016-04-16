@@ -12,21 +12,19 @@ angular.module('shopheroesApp')
 
     var vm = this;
 
-
     vm.specializations = {
-      armor: {name: 'Armor Crafting'},
-      metal: {name: 'Metal Working'},
-      weapon: {name: 'Weapon Crafting'},
-      wood: {name: 'Wood Working'},
-      alchemy: {name: 'Alchemy'},
-      textile: {name: 'Textile Working'},
-      arts: {name: 'Arts & Crafts'},
-      tinkering: {name: 'Tinkering'},
-      magic: {name: 'Magic'},
-      rune: {name: 'Rune Writing'},
-      jewelry: {name: 'Jewelry'}
+      armor: {name: 'Armor Crafting', img: 'armor.png'},
+      metal: {name: 'Metal Working', img: 'metal.png'},
+      weapon: {name: 'Weapon Crafting', img: 'weapon.png'},
+      wood: {name: 'Wood Working', img: 'wood.png'},
+      alchemy: {name: 'Alchemy', img: 'alchemy.png'},
+      textile: {name: 'Textile Working', img: 'textile.png'},
+      arts: {name: 'Arts & Crafts', img: 'arts.png'},
+      tinkering: {name: 'Tinkering', img: 'tinkering.png'},
+      magic: {name: 'Magic', img: 'magic.png'},
+      rune: {name: 'Rune Writing', img: 'rune.png'},
+      jewelry: {name: 'Jewelry', img: 'jewelry.png'}
     };
-
 
     vm.service = {
       specializations: vm.specializations,
