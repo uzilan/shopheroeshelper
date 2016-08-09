@@ -1,17 +1,19 @@
 #specListItem {
-  margin: 5px;
-  padding:2px;
-  display: inline-block;
-  font-size: medium;
+  padding: 5px;
+  font-size: small;
   font-weight: 500;
   border: 1px solid white;
   text-align: center;
-  width: 140px;
+  height: 110px;
+  vertical-align: bottom;
+  display: table-cell;
+  width: 70px;
 }
 
 #specListItem.spec-selected {
   border: 1px dashed #0000FF;
   background-color: plum;
+
 }
 
 #specListItem img {

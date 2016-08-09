@@ -23,7 +23,8 @@ angular.module('shopheroesApp')
       tinkering: {name: 'Tinkering', img: 'tinkering.png'},
       magic: {name: 'Magic', img: 'magic.png'},
       rune: {name: 'Rune Writing', img: 'rune.png'},
-      jewelry: {name: 'Jewelry', img: 'jewelry.png'}
+      jewelry: {name: 'Jewelry', img: 'jewelry.png'},
+      mastery: {name: 'Mastery', img: 'jewelry.png'}
     };
 
     vm.service = {
@@ -34,96 +35,123 @@ angular.module('shopheroesApp')
 
     vm.workers = [
       {
-        name: 'Armorer',
+        name: 'Robert',
+        title: 'Armorer',
         tier: 1,
         specializations: [spec.armor, spec.metal]
       },
       {
-        name: 'Blacksmith',
+        name: 'William',
+        title: 'Blacksmith',
         tier: 1,
         specializations: [spec.metal, spec.weapon]
       },
       {
-        name: 'Carpenter',
+        name: 'John',
+        title: 'Carpenter',
         tier: 1,
           specializations: [spec.weapon, spec.wood]
       },
       {
-        name: 'Druid',
+        name: 'Moon',
+        title: 'Druid',
         tier: 1,
         specializations: [spec.alchemy, spec.wood]
       },
       {
-        name: 'Leatherworker',
+        name: 'Jenn',
+        title: 'Leatherworker',
         tier: 1,
         specializations: [spec.armor, spec.textile]
       },
       {
-        name: 'Tailor',
+        name: 'Swyft',
+        title: 'Tailor',
         tier: 1,
         specializations: [spec.arts, spec.textile]
       },
       {
-        name: 'Artificer',
+        name: 'Fran',
+        title: 'Artificer',
         tier: 2,
         specializations: [spec.armor, spec.tinkering]
       },
       {
-        name: 'Enchanter',
+        name: 'Fladnagton',
+        title: 'Enchanter',
         tier: 2,
         specializations: [spec.magic, spec.rune]
       },
       {
-        name: 'Fletcher',
+        name: 'Marcus',
+        title: 'Fletcher',
         tier: 2,
         specializations: [spec.arts, spec.weapon]
       },
       {
-        name: 'Jeweler',
+        name: 'Ruth',
+        title: 'Jeweler',
         tier: 2,
         specializations: [spec.metal, spec.jewelry]
       },
       {
-        name: 'Luthier',
+        name: 'Margareth',
+        title: 'Luthier',
         tier: 2,
         specializations: [spec.textile, spec.wood]
       },
       {
-        name: 'Sorceress',
+        name: 'Angelina',
+        title: 'Sorceress',
         tier: 2,
         specializations: [spec.alchemy, spec.magic]
       },
       {
-        name: 'Alchemist',
+        name: 'Rosalina',
+        title:  'Alchemist',
         tier: 3,
         specializations: [spec.alchemy, spec.magic, spec.tinkering]
       },
       {
-        name: 'Artisan',
+        name: 'Eleonor',
+        title: 'Artisan',
         tier: 3,
         specializations: [spec.arts, spec.textile, spec.jewelry]
       },
       {
-        name: 'Master',
+        name: 'Igor',
+        title: 'Master',
         tier: 3,
         specializations: [spec.armor, spec.metal, spec.weapon]
       },
       {
-        name: 'Seamstress',
+        name: 'Camilla',
+        title: 'Seamstress',
         tier: 3,
         specializations: [spec.armor, spec.arts, spec.textile]
       },
       {
-        name: 'Sculptor',
+        name: 'Anthon',
+        title: 'Sculptor',
         tier: 3,
         specializations: [spec.jewelry, spec.arts, spec.wood]
       },
       {
-        name: 'Wizard',
+        name: 'Christina',
+        title: 'Wizard',
         tier: 3,
         specializations: [spec.alchemy, spec.magic, spec.rune]
       }
     ];
+
+    _.forEach(vm.workers, function(w) {
+      w.level = 0;
+      w.points = {};
+      w.specializations.push(spec.mastery);
+      _.forEach(w.specializations, function(s) {
+        w.points[s.name] = 0;
+      });
+    });
 
     vm.service.workers = vm.workers;
 

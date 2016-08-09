@@ -1,7 +1,8 @@
-<div>
+<div class="row">
   <h2>Workers</h2>
   <h5><i>Combine different worker groups to see which specializations are covered</i></h5>
 </div>
+
 
 <div class="row tier1 tier-title">
   <i>tier 1</i>
@@ -52,11 +53,43 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
-    <span ng-repeat="spec in workerStructure.specializations track by $index">
-      <x-spec></x-spec>
-    </span>
-  </div>
+  <h5><i>Specify every workers level and decide how many points to spend in every skill and mastery</i></h5>
+</div>
+
+<div class="row" style="padding-top: 10px;">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Level</th>
+      <th>Points</th>
+      <th>Points left</th>
+      <th ng-repeat="spec in workerStructure.specializations" style="width: 150px;">
+        <x-spec></x-spec>
+      </th>
+    </tr>
+    <tr ng-repeat="worker in selectedWorkers() track by $index">
+      <td>{{worker.name}}</td>
+      <td><input type="number" ng-model="worker.level" min="0" max="40" class="level"></td>
+      <td style="text-align: right">{{getPoints(worker)}}</td>
+      <td style="text-align: right">{{pointsToSpend(worker)}}</td>
+      <td ng-repeat="spec in workerStructure.specializations">
+        <div ng-show="showPoints(worker, spec)" style="white-space: nowrap;" class="worker-points-div">
+          <input type="image" ng-click="changePoints(worker, spec, -1)" src="images/minus.png"></input>
+          <label class="worker-points">{{worker.points[spec.name]}}</label>
+          <input type="image" ng-click="changePoints(worker, spec, 1)" src="images/plus.png"></input>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="totals">Totals</td>
+      <td class="totals"></td>
+      <td class="totals"></td>
+      <td class="totals"></td>
+      <td ng-repeat="spec in workerStructure.specializations track by $index" class="totals">
+        {{getSpecPoints(spec)}}
+      </td>
+    </tr>
+  </table>
 </div>
 
 

@@ -1,3 +1,17 @@
+.wider-container {
+  max-width: 970px;
+}
+
+th {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+td {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
 #numberOfWorkers label {
   padding-left: 10px;
   padding-right: 40px;
@@ -19,4 +33,25 @@
 }
 .tier3 {
   background-color: #ffcccc;
+}
+.level {
+  width: 40px;
+  text-align: center;
+}
+.totals {
+  border-top: black 1px solid;
+  font-weight: 800;
+  text-align: center;
+}
+.worker-points-div {
+  background: #f3f3bb;
+  border-right: 2px white solid;
+  border-left: 2px white solid;
+  text-align: center;
+  height: 18px;
+  width: 90%;
+}
+.worker-points {
+  vertical-align: bottom;
+  width: 30%;
 }
