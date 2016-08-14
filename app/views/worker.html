@@ -4,11 +4,26 @@
 </div>
 
 
-<div class="row tier1 tier-title">
-  <i>tier 1</i>
+<div class="row tier1 tier-title ">
+  <div style="display:inline-block">
+    <button type="button" class="btn btn-default tier-1-collapse-button" ng-click="isCollapsed1 = !isCollapsed1"><i>tier
+      1</i>
+      <i ng-hide="isCollapsed1" class="fa fa-chevron-up" aria-hidden="true"></i>
+      <i ng-show="isCollapsed1" class="fa fa-chevron-down" aria-hidden="true"></i>
+    </button>
+  </div>
+
+    <div ng-repeat="worker in tier1Workers track by $index" style="display:inline-block" ng-show="isCollapsed1">
+      <div class="checkbox worker-checkbox">
+        <label style="padding-left: 40px">
+          <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier1[$index]" ng-value="$index"/>
+          <x-mini-worker></x-mini-worker>
+        </label>
+      </div>
+  </div>
 </div>
 
-<div class="row tier1">
+<div class="row tier1" uib-collapse="isCollapsed1">
   <div ng-repeat="worker in tier1Workers track by $index"
        class="col-md-2">
     <div class="checkbox worker-checkbox">
@@ -20,11 +35,27 @@
   </div>
 </div>
 
-<div class="row tier2 tier-title">
-  <i>tier 2</i>
+
+<div class="row tier2 tier-title ">
+  <div style="display:inline-block">
+    <button type="button" class="btn btn-default tier-2-collapse-button" ng-click="isCollapsed2 = !isCollapsed2"><i>tier
+      2</i>
+      <i ng-hide="isCollapsed2" class="fa fa-chevron-up" aria-hidden="true"></i>
+      <i ng-show="isCollapsed2" class="fa fa-chevron-down" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div ng-repeat="worker in tier2Workers track by $index" style="display:inline-block" ng-show="isCollapsed2">
+    <div class="checkbox worker-checkbox">
+      <label style="padding-left: 40px">
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier2[$index]" ng-value="$index"/>
+        <x-mini-worker></x-mini-worker>
+      </label>
+    </div>
+  </div>
 </div>
 
-<div class="row tier2">
+<div class="row tier2" uib-collapse="isCollapsed2">
   <div ng-repeat="worker in tier2Workers track by $index"
        class="col-md-2">
     <div class="checkbox worker-checkbox">
@@ -36,11 +67,26 @@
   </div>
 </div>
 
-<div class="row tier3 tier-title">
-  <i>tier 3</i>
+<div class="row tier3 tier-title ">
+  <div style="display:inline-block">
+    <button type="button" class="btn btn-default tier-3-collapse-button" ng-click="isCollapsed3 = !isCollapsed3"><i>tier
+      3</i>
+      <i ng-hide="isCollapsed3" class="fa fa-chevron-up" aria-hidden="true"></i>
+      <i ng-show="isCollapsed3" class="fa fa-chevron-down" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div ng-repeat="worker in tier3Workers track by $index" style="display:inline-block" ng-show="isCollapsed3">
+    <div class="checkbox worker-checkbox">
+      <label style="padding-left: 40px">
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier3[$index]" ng-value="$index"/>
+        <x-mini-worker></x-mini-worker>
+      </label>
+    </div>
+  </div>
 </div>
 
-<div class="row tier3">
+<div class="row tier3" uib-collapse="isCollapsed3">
   <div ng-repeat="worker in tier3Workers track by $index"
        class="col-md-2">
     <div class="checkbox worker-checkbox">
@@ -52,44 +98,84 @@
   </div>
 </div>
 
+<div class="row tierx tier-title ">
+  <div style="display:inline-block">
+    <button type="button" class="btn btn-default tier-x-collapse-button" ng-click="isCollapsedx = !isCollapsedx"><i>tier
+      4 & 5</i>
+      <i ng-hide="isCollapsedx" class="fa fa-chevron-up" aria-hidden="true"></i>
+      <i ng-show="isCollapsedx" class="fa fa-chevron-down" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div ng-repeat="worker in tierxWorkers track by $index" style="display:inline-block" ng-show="isCollapsedx">
+    <div class="checkbox worker-checkbox">
+      <label style="padding-left: 40px">
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTierx[$index]" ng-value="$index"/>
+        <x-mini-worker></x-mini-worker>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="row tierx" uib-collapse="isCollapsedx">
+  <div ng-repeat="worker in tierxWorkers track by $index"
+       class="col-md-3">
+    <div class="checkbox worker-checkbox">
+      <label>
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTierx[$index]" ng-value="$index"/>
+        <x-worker></x-worker>
+      </label>
+    </div>
+  </div>
+</div>
+
 <div class="row">
-  <h5><i>Specify every workers level and decide how many points to spend in every skill and mastery</i></h5>
+  <div class="col-md-12">
+    <h5><i>Specify every workers level and decide how many points to spend on every skill and mastery</i></h5>
+  </div>
 </div>
 
 <div class="row" style="padding-top: 10px;">
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Level</th>
-      <th>Points</th>
-      <th>Points left</th>
-      <th ng-repeat="spec in workerStructure.specializations" style="width: 150px;">
-        <x-spec></x-spec>
-      </th>
-    </tr>
-    <tr ng-repeat="worker in selectedWorkers() track by $index">
-      <td>{{worker.name}}</td>
-      <td><input type="number" ng-model="worker.level" min="0" max="40" class="level"></td>
-      <td style="text-align: right">{{getPoints(worker)}}</td>
-      <td style="text-align: right">{{pointsToSpend(worker)}}</td>
-      <td ng-repeat="spec in workerStructure.specializations">
-        <div ng-show="showPoints(worker, spec)" style="white-space: nowrap;" class="worker-points-div">
-          <input type="image" ng-click="changePoints(worker, spec, -1)" src="images/minus.png"></input>
-          <label class="worker-points">{{worker.points[spec.name]}}</label>
-          <input type="image" ng-click="changePoints(worker, spec, 1)" src="images/plus.png"></input>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td class="totals">Totals</td>
-      <td class="totals"></td>
-      <td class="totals"></td>
-      <td class="totals"></td>
-      <td ng-repeat="spec in workerStructure.specializations track by $index" class="totals">
-        {{getSpecPoints(spec)}}
-      </td>
-    </tr>
-  </table>
+  <div class="col-md-12">
+    <table class="table-striped">
+      <thead>
+      <tr>
+        <th class="vertical-text">Name</th>
+        <th class="vertical-text">Level</th>
+        <th class="vertical-text">Points</th>
+        <th class="vertical-text">Points left</th>
+        <th ng-repeat="spec in workerStructure.specializations" style="width: 150px;">
+          <x-spec></x-spec>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="worker in selectedWorkers() track by $index">
+        <td>{{worker.title}}</td>
+        <td>
+          <div style="padding-left: 10px;"><input type="number" min="0" max="40" ng-model="worker.level" class="level">
+          </div>
+        </td>
+        <td style="text-align: center">{{getPoints(worker)}}</td>
+        <td style="text-align: center">{{pointsToSpend(worker)}}</td>
+        <td ng-repeat="spec in workerStructure.specializations" ng-class="{gray: $even}">
+          <div ng-show="showPoints(worker, spec)" style="white-space: nowrap;" class="worker-points-div">
+            <input type="image" ng-click="changePoints(worker, spec, -1)" src="images/minus.png"></input>
+            <input type="text" class="worker-points" ng-model="worker.points[spec.name]"></input>
+            <input type="image" ng-click="changePoints(worker, spec, 1)" src="images/plus.png"></input>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="totals" colspan="4" style="text-align: left">Totals</td>
+        <td ng-repeat="spec in workerStructure.specializations track by $index" class="totals">
+          {{getSpecPoints(spec)}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+<div style="height: 50px"></div>
 
 

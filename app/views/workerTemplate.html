@@ -1,11 +1,18 @@
 <div id="workerTemplate">
-  <h5>{{worker.name}}</h5>
-  <i><b>{{worker.title}}</b></i>
-  <i>
-    <ul>
-      <li ng-repeat="spec in worker.specializations">
-        {{spec.name}}
-      </li>
-    </ul>
-  </i>
+  <h5>{{worker.title}}</h5>
+  <i><b>{{worker.name}}</b></i>
+  <div ng-class="{'two-columns': worker.title !== 'Jack', 'three-columns': worker.title === 'Jack'}">
+    <div>
+      <i>
+        <ul>
+          <li ng-repeat="spec in worker.specializations" style="white-space: nowrap">
+            {{spec.name}}
+          </li>
+        </ul>
+      </i>
+    </div>
+    <div>
+      <img src="images/workers/{{worker.image}}">
+    </div>
+  </div>
 </div>

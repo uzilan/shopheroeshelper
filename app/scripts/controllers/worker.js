@@ -14,15 +14,18 @@ angular.module('shopheroesApp')
     $scope.tier1Workers = _.filter(workerStructure.workers, {'tier': 1});
     $scope.tier2Workers = _.filter(workerStructure.workers, {'tier': 2});
     $scope.tier3Workers = _.filter(workerStructure.workers, {'tier': 3});
+    $scope.tierxWorkers = _.filter(workerStructure.workers, function (w) {
+      return w.tier > 3
+    });
     $scope.workersTier1 = new Array(6);
     $scope.workersTier2 = new Array(6);
     $scope.workersTier3 = new Array(6);
-
+    $scope.workersTierx = new Array(6);
 
     // find out if a given specialization is among the ones that the selected workers have
     $scope.isSpecSelected = function (specialization) {
 
-      var workers = _.concat($scope.workersTier1, $scope.workersTier2, $scope.workersTier3);
+      var workers = _.concat($scope.workersTier1, $scope.workersTier2, $scope.workersTier3, $scope.workersTierx);
 
       // take the list of all workers: {name: 'Armorer',tier: 1,specializations: [spec.armor, spec.metal]}...
       return _.chain(workerStructure.workers)
@@ -43,7 +46,7 @@ angular.module('shopheroesApp')
     };
 
     $scope.selectedWorkers = function () {
-      var workers = _.concat($scope.workersTier1, $scope.workersTier2, $scope.workersTier3);
+      var workers = _.concat($scope.workersTier1, $scope.workersTier2, $scope.workersTier3, $scope.workersTierx);
 
       // take the list of all workers: {name: 'Armorer',tier: 1,specializations: [spec.armor, spec.metal]}...
       return _.chain(workerStructure.workers)
@@ -72,25 +75,7 @@ angular.module('shopheroesApp')
     };
 
     $scope.changePoints = function (worker, spec, amount) {
-
-      var currentWorker = _.find($scope.selectedWorkers(), {'name': worker.name});
-
-      var amountIsNotMinus = currentWorker.points[spec.name] + amount >= 0;
-      var amountDoesNotBreachPointsLeftToSpend = $scope.pointsToSpend(worker) > 0 || amount < 0;
-      var mastery = workerStructure.specializations.mastery;
-      var specsWithoutMastery = _.without(worker.specializations, mastery);
-      var maxSpec = _.maxBy(specsWithoutMastery, function (s) {
-        return worker.points[s.name];
-      });
-      var maxPoints = worker.points[maxSpec.name];
-
-      var masteryDoesNotExceedHeighstPoint = amount < 0 ||
-        (spec.name !== mastery.name || currentWorker.points[mastery.name] < maxPoints);
-
-
-      if (amountIsNotMinus && amountDoesNotBreachPointsLeftToSpend && masteryDoesNotExceedHeighstPoint) {
-        currentWorker.points[spec.name] += amount;
-      }
+      worker.points[spec.name] = Number(worker.points[spec.name]) + Number(amount);
     };
 
     $scope.getPoints = function (worker) {
@@ -111,15 +96,27 @@ angular.module('shopheroesApp')
         craftingBaselinePoints = 60;
         masteryBaselinePoints = 15;
         pointsPerLevel = 10;
+      } else if (worker.tier === 4) {
+        craftingBaselinePoints = 100;
+        masteryBaselinePoints = 25;
+        pointsPerLevel = 12;
+      } else if (worker.tier === 5) {
+        craftingBaselinePoints = 13;
+        masteryBaselinePoints = 0;
+        pointsPerLevel = 15;
       }
 
       return (craftingBaselinePoints + masteryBaselinePoints) + pointsPerLevel * (worker.level - 1);
     };
 
     $scope.pointsToSpend = function (worker) {
-      return $scope.getPoints(worker) - _.sumBy(worker.specializations, function (s) {
-          return worker.points[s.name];
-        });
+      var sum = 0;
+
+      _.forEach(worker.specializations, function (s) {
+        sum += Number(worker.points[s.name]);
+      });
+
+      return $scope.getPoints(worker) - sum;
     };
 
   }]);
