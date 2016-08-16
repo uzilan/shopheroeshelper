@@ -70,7 +70,7 @@ angular.module('shopheroesApp')
 
     $scope.getSpecPoints = function (spec) {
       return _.sumBy($scope.selectedWorkers(), function (w) {
-        return Number(w.points[spec.name]);
+        return w.points[spec.name] ? Number(w.points[spec.name]) : 0;
       });
     };
 
