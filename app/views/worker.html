@@ -153,7 +153,7 @@
       <tr ng-repeat="worker in selectedWorkers() track by $index">
         <td>{{worker.title}}</td>
         <td>
-          <div style="padding-left: 10px;"><input type="number" min="0" max="40" ng-model="worker.level" class="level">
+          <div style="padding-left: 10px;"><input type="number" min="1" max="50" ng-model="worker.level" class="level">
           </div>
         </td>
         <td style="text-align: center">{{getPoints(worker)}}</td>
