@@ -16,7 +16,7 @@
     <div ng-repeat="worker in tier1Workers track by $index" style="display:inline-block" ng-show="isCollapsed1">
       <div class="checkbox worker-checkbox">
         <label style="padding-left: 40px">
-          <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier1[$index]" ng-value="$index"/>
+          <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier1[$index]" ng-value="$index" ng-change="saveWorkers()"/>
           <x-mini-worker></x-mini-worker>
         </label>
       </div>
@@ -28,7 +28,7 @@
        class="col-md-2">
     <div class="checkbox worker-checkbox">
       <label>
-        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier1[$index]" ng-value="$index"/>
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier1[$index]" ng-value="$index" ng-change="saveWorkers()"/>
         <x-worker></x-worker>
       </label>
     </div>
@@ -48,7 +48,7 @@
   <div ng-repeat="worker in tier2Workers track by $index" style="display:inline-block" ng-show="isCollapsed2">
     <div class="checkbox worker-checkbox">
       <label style="padding-left: 40px">
-        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier2[$index]" ng-value="$index"/>
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier2[$index]" ng-value="$index" ng-change="saveWorkers()"/>
         <x-mini-worker></x-mini-worker>
       </label>
     </div>
@@ -60,7 +60,7 @@
        class="col-md-2">
     <div class="checkbox worker-checkbox">
       <label>
-        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier2[$index]" ng-value="$index"/>
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier2[$index]" ng-value="$index" ng-change="saveWorkers()"/>
         <x-worker></x-worker>
       </label>
     </div>
@@ -79,7 +79,7 @@
   <div ng-repeat="worker in tier3Workers track by $index" style="display:inline-block" ng-show="isCollapsed3">
     <div class="checkbox worker-checkbox">
       <label style="padding-left: 40px">
-        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier3[$index]" ng-value="$index"/>
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier3[$index]" ng-value="$index" ng-change="saveWorkers()"/>
         <x-mini-worker></x-mini-worker>
       </label>
     </div>
@@ -91,7 +91,7 @@
        class="col-md-2">
     <div class="checkbox worker-checkbox">
       <label>
-        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier3[$index]" ng-value="$index"/>
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTier3[$index]" ng-value="$index" ng-change="saveWorkers()"/>
         <x-worker></x-worker>
       </label>
     </div>
@@ -110,7 +110,7 @@
   <div ng-repeat="worker in tierxWorkers track by $index" style="display:inline-block" ng-show="isCollapsedx">
     <div class="checkbox worker-checkbox">
       <label style="padding-left: 40px">
-        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTierx[$index]" ng-value="$index"/>
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTierx[$index]" ng-value="$index" ng-change="saveWorkers()"/>
         <x-mini-worker></x-mini-worker>
       </label>
     </div>
@@ -122,7 +122,7 @@
        class="col-md-3">
     <div class="checkbox worker-checkbox">
       <label>
-        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTierx[$index]" ng-value="$index"/>
+        <input type="checkbox" name="worker{{$index}}" ng-model="$parent.workersTierx[$index]" ng-value="$index" ng-change="saveWorkers()"/>
         <x-worker></x-worker>
       </label>
     </div>
@@ -153,7 +153,8 @@
       <tr ng-repeat="worker in selectedWorkers() track by $index">
         <td>{{worker.title}}</td>
         <td>
-          <div style="padding-left: 10px;"><input type="number" min="1" max="50" ng-model="worker.level" class="level">
+          <div style="padding-left: 10px;">
+            <input type="number" min="1" max="50" ng-model="worker.level" class="level" ng-change="saveWorkers()">
           </div>
         </td>
         <td style="text-align: center">{{getPoints(worker)}}</td>
@@ -161,7 +162,7 @@
         <td ng-repeat="spec in workerStructure.specializations" ng-class="{gray: $even}">
           <div ng-show="showPoints(worker, spec)" style="white-space: nowrap;" class="worker-points-div">
             <input type="image" ng-click="changePoints(worker, spec, -1)" src="images/minus.png"></input>
-            <input type="text" class="worker-points" ng-model="worker.points[spec.name]"></input>
+            <input type="text" class="worker-points" ng-model="worker.points[spec.name]" ng-change="saveWorkers()"></input>
             <input type="image" ng-click="changePoints(worker, spec, 1)" src="images/plus.png"></input>
           </div>
         </td>
